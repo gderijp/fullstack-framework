@@ -1,7 +1,6 @@
 <?php
 
-use App\Database\Database;
-use \RedBeanPHP\R;
+use RedBeanPHP\R;
 
 require_once 'vendor/autoload.php';
 
@@ -56,9 +55,6 @@ foreach ($recipes as $recipe) {
     $dbRecipe->level = $recipe['level'];
 
     $id = R::store($dbRecipe);
-    if ($id) {
-        $recordAmount++;
-    }
 }
 
-echo "$recordAmount records inserted" . PHP_EOL;
+echo $id . " records inserted" . PHP_EOL;
