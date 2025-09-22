@@ -33,8 +33,6 @@ class KitchenController
         $kitchenId = $_GET['id'];
 
         foreach ($this->kitchens as $kitchen) {
-            // if (array_search($kitchenId, $kitchen)) {
-            // }
             if ($kitchen['id'] === $kitchenId) {
                 $foundKitchen = $kitchen;
             }
