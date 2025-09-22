@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Helpers;
+use App\Controllers\BaseController;
 use RedBeanPHP\R;
 
-class KitchenController
+class KitchenController extends BaseController
 {
     private Helpers $helper;
     protected array $kitchens = [];
 
     public function __construct()
     {
+        parent::__construct();
         $this->helper = new Helpers();
 
         for ($i = 1; $i <= R::count('kitchen'); $i++) {
@@ -30,17 +32,15 @@ class KitchenController
 
     public function show()
     {
-        $kitchenId = $_GET['id'];
-
-        foreach ($this->kitchens as $kitchen) {
-            if ($kitchen['id'] === $kitchenId) {
-                $foundKitchen = $kitchen;
-            }
-        }
-
         if (empty($_GET['id'])) {
             $this->helper->error(404, 'No kitchen ID specified');
-        } elseif (empty($foundKitchen)) {
+        }
+
+        $kitchenId = $_GET['id'];
+
+        $foundKitchen = $this->getBeanById('kitchen', $kitchenId);
+
+        if (empty($foundKitchen)) {
             $this->helper->error(404, "No kitchens with id {$kitchenId} found");
         }
 
