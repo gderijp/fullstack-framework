@@ -1,5 +1,5 @@
 # Full-stack framework
-Mijn eigen gebouwde fullstack framework gebouwd met Twig
+Mijn eigen gebouwde MVC fullstack framework gebouwd met Twig en RedBeanPHP
 
 ## Installation
 1. Clone deze repository
