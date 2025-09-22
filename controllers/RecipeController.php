@@ -12,12 +12,12 @@ class RecipeController extends BaseController
 {
     private Helpers $helper;
     protected array $recipes;
-    const TYPES = [
+    private const TYPES = [
         'Breakfast',
         'Lunch',
         'Dinner',
     ];
-    const DIFFICULTIES = [
+    private const DIFFICULTIES = [
         'Easy',
         'Medium',
         'Hard',
