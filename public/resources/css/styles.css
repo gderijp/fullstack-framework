@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+fieldset {
+    border-radius: 10px;
+}
+#header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5vw;
+    padding: 10px;
+    background-color: rgb(55, 55, 241);
+}
+
+#header a {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#header img {
+    justify-content: flex-start;
+    height: 2.5rem;
+}
+
+#container {
+    display: flex;
+    margin: 50px;
+    justify-content: center;
+}
+
+#recipe-table {
+    justify-content: center;
+    border-collapse: collapse;
+    border-spacing: 0 10px;
+    width: 60vw;
+    border-radius: 20px;
+    table-layout: fixed;
+}
+
+#recipe-table tr:first-child {
+    background-color: rgb(227, 227, 227);
+}
+
+#recipe-table th,
+#recipe-table td {
+    padding: 10px;
+}
+
+#recipe-table th {
+    background-color: rgb(227, 227, 227);
+}
+
+#error {
+    background-color: rgb(255, 160, 160);
+    color: rgb(198, 0, 0);
+}
+#kitchen-show-container {
+    justify-content: center;
+}
+
+#kitchen-description {
+    max-width: 500px;
+    margin: 0;
+}
+.header-button {
+    color: white;
+}
+.table-row {
+    border: 1px solid rgb(187, 187, 187);
+}
+
+.levels {
+    display: flex;
+    justify-content: center;
+    border-radius: 7px;
+    padding: 3px 10px 3px 10px;
+}
+
+.level-easy {
+    background-color: rgb(138, 255, 138);
+    color: rgb(0, 116, 0);
+}
+
+.level-medium {
+    background-color: rgb(255, 234, 172);
+    color: rgb(212, 142, 11);
+}
+
+.level-hard {
+    background-color: rgb(255, 160, 160);
+    color: rgb(198, 0, 0);
+}
+
+.center {
+    text-align: center;
+}
+.hover-underline {
+    text-decoration: none;
+}
+
+.hover-underline:hover {
+    text-decoration: underline;
+}

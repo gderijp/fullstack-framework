@@ -1,0 +1,32 @@
+{% extends "./layouts/app.twig" %}
+
+{% block show %}
+
+    <p class="center"><a href="/"class="center hover-underline">< Terug naar homepagina</a></p>
+
+    <table id="recipe-table">
+        <tr class="table-row">
+            <th><h2>{{ recipe.name }}</h2></th>
+            <th></th>
+        </tr>
+
+        <tr class="table-row">
+            <td>Type</td>
+            <td class="center">{{ recipe.type }}</td>
+        </tr>
+        
+        <tr class="table-row">
+            <td>Level</td>
+            <td>
+                {% if recipe.level == 'easy' %}
+                    <span class="level-easy levels">{{ recipe.level }}</span>
+                {% elseif recipe.level == 'medium' %}
+                    <span class="level-medium levels">{{ recipe.level }}</span>
+                {% elseif recipe.level == 'hard' %}
+                    <span class="level-hard levels">{{ recipe.level }}</span>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

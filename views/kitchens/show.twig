@@ -1,0 +1,16 @@
+{% extends "./layouts/app.twig" %}
+
+{% block kitchens %}
+
+    <p class="center"><a href="/kitchen"class="center hover-underline">< Terug naar alle keukens</a></p>
+
+    <div id="kitchen-show-container">
+        <h1 class="center">{{ kitchen.name }}</h1>
+
+    <fieldset>
+        <legend class="center"><h2>Beschrijving</h2></legend>
+        <p id="kitchen-description">{{ kitchen.description }}</p>
+    </fieldset>
+    </div>
+    
+{% endblock %}

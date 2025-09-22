@@ -1,0 +1,18 @@
+{% extends "./layouts/app.twig" %}
+
+{% block kitchens %}
+
+    <h1>Kitchens</h1>
+
+    <table id="recipe-table">
+        <tr class="table-row">
+            <th>Naam</th>
+        </tr>
+
+        {% for kitchen in kitchens %}
+        <tr class="table-row">
+            <td><a href="/kitchen/show&id={{ kitchen.id }}" class="hover-underline">{{ kitchen.name }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

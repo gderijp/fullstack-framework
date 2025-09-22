@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} !^/resources/ [NC]
+    RewriteCond ${SCRIPT_FILENAME} !-d
+    RewriteCond ${SCRIPT_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?params=$1 [L,QSA]
+</IfModule>

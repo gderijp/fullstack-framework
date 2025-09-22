@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome page</title>
+<head>
+    {% block head %}
+    <link rel="stylesheet" type="text/css" href="/resources/css/styles.css">
+    {% endblock %}
+</head>
+
+<body>
+    <div id="header">
+    {% block header %}
+        <a href="/"><img src="/resources/icons/bit-academy.png" alt="Bit academy logo"></a>
+        <a href="/recipe" class="header-button hover-underline">Recipies</a>
+        <a href="/kitchen" class="header-button hover-underline">Kitchens</a>
+    {% endblock %}
+    </div>
+    
+    <div id="container">
+        <div id="show-recipe">
+        {% block show %}
+        {% endblock %}
+        </div>
+    
+        <div id="recipes">
+        {% block recipes %}
+        {% endblock %}
+        </div>
+
+        <div id="kitchens">
+        {% block kitchens %}
+        {% endblock %}
+        </div> 
+
+        <div id="introduction">
+        {% block introduction %}
+        {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
