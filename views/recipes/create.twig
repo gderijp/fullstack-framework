@@ -1,0 +1,33 @@
+{% extends "./layouts/app.twig" %}
+
+{% block create %}
+
+    <h1>Create recipe</h1>
+
+    {# <p class="center"><a href="/recipe"class="center hover-underline">< Back to recepies</a></p> #}
+
+    <form id="create-form" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+        
+        <label for="type">Type</label>
+        <select id="type" name="type">
+        {% for type in types %}
+            <option value="{{ type|lower }}">{{ type }}</option>
+        {% endfor %}
+        </select>
+
+        <label for="level">Level</label>
+        <select id="level" name="level">
+        {% for difficulty in difficulties %}
+            <option value="{{ difficulty|lower }}">{{ difficulty }}</option>
+        {% endfor %}
+        </select>
+
+        <div id="submit-section">
+            <a href="/recipe"class="hover-underline">Back to recepies</a>
+            <input id="submit" type="submit" value="Submit">
+        </div>
+    </form>
+    
+{% endblock %}

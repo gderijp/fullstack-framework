@@ -104,3 +104,32 @@ fieldset {
 .hover-underline:hover {
     text-decoration: underline;
 }
+
+/* create view */
+
+#create-form {
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#create-form input,
+#create-form textarea,
+#create-form select {
+    border-radius: 7px;
+    padding: 5px;
+    margin-bottom: 1.5rem;
+}
+
+#submit {
+    width: 100px;
+    color: white;
+    background-color: rgb(35, 108, 254);
+}
+
+#submit-section {
+    align-items: baseline;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}

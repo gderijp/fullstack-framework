@@ -1,0 +1,20 @@
+{% extends "./layouts/app.twig" %}
+
+{% block create %}
+
+    <h1>Create kitchen</h1>
+
+    <form id="create-form" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+        
+        <label for="description">Description</label>
+        <textarea id="description" name"description" rows="4" cols="30"></textarea>
+
+        <div id="submit-section">
+            <a href="/kitchen"class="center hover-underline">Back to kitchens</a>
+            <input id="submit" type="submit" value="Submit">
+        </div>
+    </form>
+    
+{% endblock %}

@@ -48,4 +48,9 @@ class KitchenController extends BaseController
             'kitchen' => $foundKitchen
         ]);
     }
+
+    public function create(): void
+    {
+        $this->helper->displayTemplate('kitchens/create.twig', []);
+    }
 }

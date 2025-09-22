@@ -2,7 +2,7 @@
 <html lang="en">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome page</title>
+<title>Kitchen app</title>
 <head>
     {% block head %}
     <link rel="stylesheet" type="text/css" href="/resources/css/styles.css">
@@ -36,6 +36,11 @@
 
         <div id="introduction">
         {% block introduction %}
+        {% endblock %}
+        </div>
+
+        <div id="create-recipe">
+        {% block create %}
         {% endblock %}
         </div>
     </div>

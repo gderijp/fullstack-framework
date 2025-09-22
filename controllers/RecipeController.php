@@ -12,6 +12,16 @@ class RecipeController extends BaseController
 {
     private Helpers $helper;
     protected array $recipes;
+    const TYPES = [
+        'Breakfast',
+        'Lunch',
+        'Dinner',
+    ];
+    const DIFFICULTIES = [
+        'Easy',
+        'Medium',
+        'Hard',
+    ];
 
     public function __construct()
     {
@@ -46,6 +56,14 @@ class RecipeController extends BaseController
 
         $this->helper->displayTemplate('recipes/show.twig', [
             'recipe' => $foundRecipe
+        ]);
+    }
+
+    public function create(): void
+    {
+        $this->helper->displayTemplate('recipes/create.twig', [
+            'types' => self::TYPES,
+            'difficulties' => self::DIFFICULTIES,
         ]);
     }
 }
