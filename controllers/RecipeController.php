@@ -5,52 +5,22 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Helpers;
+use RedBeanPHP\R;
 
 class RecipeController
 {
     private Helpers $helper;
-    protected array $recipes = [
-        [
-            'id'    => 1,
-            'name'  => 'Pannekoeken',
-            'type'  => 'dinner',
-            'level' => 'easy',
-        ],
-        [
-            'id'    => 24,
-            'name'  => 'Tosti',
-            'type'  => 'lunch',
-            'level' => 'easy',
-        ],
-        [
-            'id'    => 36,
-            'name'  => 'Boeren ommelet',
-            'type'  => 'lunch',
-            'level' => 'easy',
-        ],
-        [
-            'id'    => 47,
-            'name'  => 'Broodje Pulled Pork',
-            'type'  => 'lunch',
-            'level' => 'hard',
-        ],
-        [
-            'id'    => 5,
-            'name'  => 'Hutspot met draadjesvlees',
-            'type'  => 'dinner',
-            'level' => 'medium',
-        ],
-        [
-            'id'    => 6,
-            'name'  => 'Nasi Goreng met Babi ketjap',
-            'type'  => 'dinner',
-            'level' => 'hard',
-        ],
-    ];
+    protected array $recipes;
 
     public function __construct()
     {
         $this->helper = new Helpers();
+
+        R::setup('mysql:host=localhost;dbname=fullstack_framework', 'bit_academy', 'bit_academy');
+
+        for ($i = 1; $i <= R::count('recipe'); $i++) {
+            $this->recipes[] = R::load('recipe', $i);
+        }
     }
 
     public function index(): void
@@ -65,7 +35,7 @@ class RecipeController
         $recipeId = $_GET['id'];
 
         foreach ($this->recipes as $recipe) {
-            if (array_search($recipeId, $recipe)) {
+            if ($recipe['id'] === $recipeId) {
                 $foundRecipe = $recipe;
             }
         }
