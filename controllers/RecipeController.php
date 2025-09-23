@@ -81,4 +81,8 @@ class RecipeController extends BaseController
         header('Location: /recipe/show&id=' . $recipeId);
         exit();
     }
+
+    public function edit(): void {}
+
+    public function editPost(): void {}
 }
