@@ -36,6 +36,7 @@ if (method_exists($controllerInstance, $method)) {
         case "POST":
             $methodPost = $method . 'Post';
             $controllerInstance->$methodPost();
+            break;
 
         default:
             break;
