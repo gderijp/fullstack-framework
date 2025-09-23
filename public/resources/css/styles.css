@@ -1,3 +1,4 @@
+/* general */
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -6,6 +7,35 @@ body {
 fieldset {
     border-radius: 10px;
 }
+#container {
+    display: flex;
+    margin: 50px;
+    justify-content: center;
+}
+
+#error {
+    background-color: rgb(255, 160, 160);
+    color: rgb(198, 0, 0);
+}
+
+
+.center {
+    text-align: center;
+}
+
+.hover-underline {
+    text-decoration: none;
+}
+
+.hover-underline:hover {
+    text-decoration: underline;
+}
+
+.table-row {
+    border: 1px solid rgb(187, 187, 187);
+}
+
+/* header bar */
 #header {
     display: flex;
     justify-content: flex-start;
@@ -13,6 +43,7 @@ fieldset {
     gap: 5vw;
     padding: 10px;
     background-color: rgb(55, 55, 241);
+    flex-wrap: wrap;
 }
 
 #header a {
@@ -25,12 +56,11 @@ fieldset {
     height: 2.5rem;
 }
 
-#container {
-    display: flex;
-    margin: 50px;
-    justify-content: center;
+.header-button {
+    color: white;
 }
 
+/* recipe table */
 #recipe-table {
     justify-content: center;
     border-collapse: collapse;
@@ -38,6 +68,7 @@ fieldset {
     width: 60vw;
     border-radius: 20px;
     table-layout: fixed;
+    margin-bottom: 2rem;
 }
 
 #recipe-table tr:first-child {
@@ -52,26 +83,7 @@ fieldset {
 #recipe-table th {
     background-color: rgb(227, 227, 227);
 }
-
-#error {
-    background-color: rgb(255, 160, 160);
-    color: rgb(198, 0, 0);
-}
-#kitchen-show-container {
-    justify-content: center;
-}
-
-#kitchen-description {
-    max-width: 500px;
-    margin: 0;
-}
-.header-button {
-    color: white;
-}
-.table-row {
-    border: 1px solid rgb(187, 187, 187);
-}
-
+/* difficulty levels */
 .levels {
     display: flex;
     justify-content: center;
@@ -94,28 +106,31 @@ fieldset {
     color: rgb(198, 0, 0);
 }
 
-.center {
-    text-align: center;
+/* kitchen show view */
+#kitchen-show-container {
+    justify-content: center;
+    margin-bottom: 2rem;
 }
-.hover-underline {
-    text-decoration: none;
+#kitchen-description {
+    max-width: 500px;
+    margin: 0;
 }
 
-.hover-underline:hover {
-    text-decoration: underline;
+#show-fieldset {
+    padding: 0 2rem 1rem 2rem;
+    min-width: 25vw;
 }
 
 /* create view */
-
-#create-form {
+#create-edit-form {
     width: 30rem;
     display: flex;
     flex-direction: column;
 }
 
-#create-form input,
-#create-form textarea,
-#create-form select {
+#create-edit-form input,
+#create-edit-form textarea,
+#create-edit-form select {
     border-radius: 7px;
     padding: 5px;
     margin-bottom: 1.5rem;
@@ -133,3 +148,5 @@ fieldset {
     justify-content: flex-end;
     gap: 20px;
 }
+/* edit view */
+#edit-container {}

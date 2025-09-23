@@ -7,10 +7,12 @@
     <div id="kitchen-show-container">
         <h1 class="center">{{ kitchen.name }}</h1>
 
-    <fieldset>
-        <legend class="center"><h2>Beschrijving</h2></legend>
-        <p id="kitchen-description">{{ kitchen.description }}</p>
-    </fieldset>
+        <fieldset id="show-fieldset">
+            <legend class="center"><h2>Description</h2></legend>
+            <p id="kitchen-description">{{ kitchen.description }}</p>
+        </fieldset>
     </div>
     
+    <a href="/kitchen/edit&id={{ kitchen.id }}" id="edit-btn">Edit this kitchen</a>
+
 {% endblock %}

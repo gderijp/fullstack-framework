@@ -1,15 +1,15 @@
 {% extends "./layouts/app.twig" %}
 
-{% block create %}
+{% block edit %}
 
-    <h1>Create kitchen</h1>
+    <h1>Edit kitchen</h1>
 
-    <form id="create-edit-form" method="POST" action="/kitchen/create">
+    <form id="create-edit-form" method="POST" action="/kitchen/edit&id={{ kitchen.id }}">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" value="{{ kitchen.name }}" required>
         
         <label for="description">Description</label>
-        <textarea id="description" name="description" rows="4" cols="30" form="create-edit-form" required></textarea>
+        <textarea id="description" name="description" rows="4" cols="30" form="create-edit-form" required>{{ kitchen.description }}</textarea>
 
         <div id="submit-section">
             <a href="/kitchen"class="center hover-underline">Back to kitchens</a>

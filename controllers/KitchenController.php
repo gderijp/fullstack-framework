@@ -67,4 +67,38 @@ class KitchenController extends BaseController
         header('Location: /kitchen/show&id=' . $kitchenId);
         exit();
     }
+
+    public function edit(): void
+    {
+        if (empty($_GET['id'])) {
+            $this->helper->error(404, 'No kitchen ID specified');
+        }
+
+        $kitchenId = $_GET['id'];
+
+        $foundKitchen = $this->getBeanById('kitchen', $kitchenId);
+
+        if (empty($foundKitchen)) {
+            $this->helper->error(404, "No kitchen with id {$kitchenId} found");
+        }
+
+        $this->helper->displayTemplate('kitchens/edit.twig', [
+            'kitchen' => $foundKitchen
+        ]);
+    }
+
+    public function editPost(): void
+    {
+        $editKitchen = R::dispense('kitchen');
+
+        $editKitchen->id = $_GET['id'];
+        $editKitchen->name = $_POST['name'];
+        $editKitchen->description = $_POST['description'];
+
+        $editKitchenId = R::store($editKitchen);
+
+        $_GET['id'] = $editKitchenId;
+        header('Location: /kitchen/show&id=' . $editKitchenId);
+        exit();
+    }
 }
