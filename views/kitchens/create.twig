@@ -6,10 +6,10 @@
 
     <form id="create-form" method="POST">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" required>
         
         <label for="description">Description</label>
-        <textarea id="description" name"description" rows="4" cols="30"></textarea>
+        <textarea id="description" name="description" rows="4" cols="30" form="create-form" required></textarea>
 
         <div id="submit-section">
             <a href="/kitchen"class="center hover-underline">Back to kitchens</a>

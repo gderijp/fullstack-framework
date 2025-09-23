@@ -4,21 +4,19 @@
 
     <h1>Create recipe</h1>
 
-    {# <p class="center"><a href="/recipe"class="center hover-underline">< Back to recepies</a></p> #}
-
     <form id="create-form" method="POST">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" required>
         
         <label for="type">Type</label>
-        <select id="type" name="type">
+        <select id="type" name="type" required>
         {% for type in types %}
             <option value="{{ type|lower }}">{{ type }}</option>
         {% endfor %}
         </select>
 
         <label for="level">Level</label>
-        <select id="level" name="level">
+        <select id="level" name="level" required>
         {% for difficulty in difficulties %}
             <option value="{{ difficulty|lower }}">{{ difficulty }}</option>
         {% endfor %}

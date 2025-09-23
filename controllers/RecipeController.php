@@ -66,4 +66,19 @@ class RecipeController extends BaseController
             'difficulties' => self::DIFFICULTIES,
         ]);
     }
+
+    public function createPost(): void
+    {
+        $newRecipe = R::dispense('recipe');
+
+        $newRecipe->name = $_POST['name'];
+        $newRecipe->type = $_POST['type'];
+        $newRecipe->level = $_POST['level'];
+
+        $recipeId = R::store($newRecipe);
+
+        $_GET['id'] = $recipeId;
+        header('Location: /recipe/show&id=' . $recipeId);
+        exit();
+    }
 }

@@ -41,7 +41,7 @@ class KitchenController extends BaseController
         $foundKitchen = $this->getBeanById('kitchen', $kitchenId);
 
         if (empty($foundKitchen)) {
-            $this->helper->error(404, "No kitchens with id {$kitchenId} found");
+            $this->helper->error(404, "No kitchen with id {$kitchenId} found");
         }
 
         $this->helper->displayTemplate('kitchens/show.twig', [
@@ -52,5 +52,19 @@ class KitchenController extends BaseController
     public function create(): void
     {
         $this->helper->displayTemplate('kitchens/create.twig', []);
+    }
+
+    public function createPost(): void
+    {
+        $newKitchen = R::dispense('kitchen');
+
+        $newKitchen->name = $_POST['name'];
+        $newKitchen->description = $_POST['description'];
+
+        $kitchenId = R::store($newKitchen);
+
+        $_GET['id'] = $kitchenId;
+        header('Location: /kitchen/show&id=' . $kitchenId);
+        exit();
     }
 }

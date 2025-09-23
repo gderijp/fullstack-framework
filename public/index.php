@@ -28,7 +28,17 @@ $controllerInstance = ${strtolower($controller) . 'Controller'};
 
 // Check if method exists
 if (method_exists($controllerInstance, $method)) {
-    $controllerInstance->$method();
+    switch ($_SERVER['REQUEST_METHOD']) {
+        case "GET":
+            $controllerInstance->$method();
+            break;
+
+        case "POST":
+            $controllerInstance->createPost();
+
+        default:
+            break;
+    }
 } else {
     $controllerInstance->index();
 }
