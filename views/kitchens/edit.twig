@@ -2,19 +2,21 @@
 
 {% block edit %}
 
-    <h1>Edit kitchen</h1>
+    <div id="edit-container">
+        <h1>Edit kitchen</h1>
 
-    <form id="create-edit-form" method="POST" action="/kitchen/edit&id={{ kitchen.id }}">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" value="{{ kitchen.name }}" required>
-        
-        <label for="description">Description</label>
-        <textarea id="description" name="description" rows="4" cols="30" form="create-edit-form" required>{{ kitchen.description }}</textarea>
+        <form id="create-edit-form" method="POST" action="/kitchen/edit&id={{ kitchen.id }}">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="{{ kitchen.name }}" required>
+            
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4" cols="30" form="create-edit-form" required>{{ kitchen.description }}</textarea>
 
-        <div id="submit-section">
-            <a href="/kitchen"class="center hover-underline">Back to kitchens</a>
-            <input id="submit" type="submit" value="Submit">
-        </div>
-    </form>
-    
+            <div id="submit-section">
+                <a href="/kitchen" class="center hover-underline">Back to kitchens</a>
+                <input id="submit" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
 {% endblock %}

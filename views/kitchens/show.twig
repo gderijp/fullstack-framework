@@ -2,17 +2,49 @@
 
 {% block kitchens %}
 
-    <p class="center"><a href="/kitchen"class="center hover-underline">< Terug naar alle keukens</a></p>
+    <div id="kitchens">
 
-    <div id="kitchen-show-container">
-        <h1 class="center">{{ kitchen.name }}</h1>
+        <p class="center"><a href="/kitchen" class="center hover-underline">&lt; Terug naar alle keukens</a></p>
 
-        <fieldset id="show-fieldset">
-            <legend class="center"><h2>Description</h2></legend>
-            <p id="kitchen-description">{{ kitchen.description }}</p>
-        </fieldset>
+        <div id="kitchen-show-container">
+            <h1 class="center">{{ kitchen.name }}</h1>
+
+            <fieldset id="show-fieldset">
+                <legend class="center"><h2>Description</h2></legend>
+                <p id="kitchen-description">{{ kitchen.description }}</p>
+            </fieldset>
+        </div>
+        
+        <a href="/kitchen/edit&id={{ kitchen.id }}" id="edit-btn">Edit this kitchen</a>
     </div>
-    
-    <a href="/kitchen/edit&id={{ kitchen.id }}" id="edit-btn">Edit this kitchen</a>
+
+    {% if recipes %}
+        <div id="kitchen-show-recipes">
+            <h2>Recipes</h2>
+            <div id="kitchen-show-recipe-tables">
+            {% for recipe in recipes %}
+            <table class="show-recipe-table">
+                <tr>
+                    <th>{{ recipe.name }}</th>
+                    <th><a href="/recipe/show&id={{ recipe.id }}">Show</a></th>
+                </tr>
+                
+                <tr>
+                    <td>{{ recipe.type }}</td>
+                    <td>
+                        {% if recipe.level == 'easy' %}
+                            <span class="level-easy levels">{{ recipe.level }}</span>
+                        {% elseif recipe.level == 'medium' %}
+                            <span class="level-medium levels">{{ recipe.level }}</span>
+                        {% elseif recipe.level == 'hard' %}
+                            <span class="level-hard levels">{{ recipe.level }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock %}

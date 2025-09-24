@@ -2,32 +2,35 @@
 
 {% block recipes %}
 
-    <h1>Recipes</h1>
+    <div id="recipes">
 
-    <p><a href="/recipe/create"class="hover-underline">+ add recipe</a></p>
-    
-    <table id="recipe-table">
-        <tr class="table-row">
-            <th>Naam</th>
-            <th>Type</th>
-            <th>Level</th>
-        </tr>
+        <h1>Recipes</h1>
 
-        {% for recipe in recipes %}
-        <tr class="table-row">
-            <td><a href="/recipe/show&id={{ recipe.id }}" class="hover-underline">{{ recipe.name }}</a></td>
-            <td class="center">{{ recipe.type }}</td>
-            <td>
-            {% if recipe.level == 'easy' %}
-                <span class="level-easy levels">{{ recipe.level }}</span>
-            {% elseif recipe.level == 'medium' %}
-                <span class="level-medium levels">{{ recipe.level }}</span>
-            {% elseif recipe.level == 'hard' %}
-                <span class="level-hard levels">{{ recipe.level }}</span>
-            {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+        <p><a href="/recipe/create" class="hover-underline">+ add recipe</a></p>
+        
+        <table id="recipe-table">
+            <tr class="table-row">
+                <th>Naam</th>
+                <th>Type</th>
+                <th>Level</th>
+            </tr>
+
+            {% for recipe in recipes %}
+            <tr class="table-row">
+                <td><a href="/recipe/show&id={{ recipe.id }}" class="hover-underline">{{ recipe.name }}</a></td>
+                <td class="center">{{ recipe.type }}</td>
+                <td>
+                {% if recipe.level == 'easy' %}
+                    <span class="level-easy levels">{{ recipe.level }}</span>
+                {% elseif recipe.level == 'medium' %}
+                    <span class="level-medium levels">{{ recipe.level }}</span>
+                {% elseif recipe.level == 'hard' %}
+                    <span class="level-hard levels">{{ recipe.level }}</span>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
     
 {% endblock %}

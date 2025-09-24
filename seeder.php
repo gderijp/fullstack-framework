@@ -75,28 +75,45 @@ $kitchens = [
     ],
 ];
 
+$kitchenRecipeMapping = [
+    'Franse keuken' => ['Pannekoeken'],
+    'Chinese keuken' => ['Nasi Goreng met Babi ketjap'],
+    'Hollandse keuken' => ['Hutspot met draadjesvlees', 'Boeren ommelet', 'Tosti'],
+    'Mediterraans' => ['Broodje Pulled Pork'],
+];
+
 R::setup('mysql:host=localhost;dbname=fullstack_framework', 'bit_academy', 'bit_academy');
 R::nuke();
+
+// add kitchens
+$kitchenBeans = [];
+foreach ($kitchens as $kitchen) {
+    $dbKitchen = R::dispense('kitchen');
+    $dbKitchen->name = $kitchen['name'];
+    $dbKitchen->description = $kitchen['description'];
+
+    $kitchenId = R::store($dbKitchen);
+    $kitchenBeans[$dbKitchen->name] = $dbKitchen;
+}
 
 // add recipes
 foreach ($recipes as $recipe) {
     $dbRecipe = R::dispense('recipe');
-
     $dbRecipe->name = $recipe['name'];
     $dbRecipe->type = $recipe['type'];
     $dbRecipe->level = $recipe['level'];
 
     $recipeId = R::store($dbRecipe);
-}
 
-// add kitchens
-foreach ($kitchens as $kitchen) {
-    $dbKitchen = R::dispense('kitchen');
+    // find and add recipe relation to kitchen via mapping
+    foreach ($kitchenRecipeMapping as $kitchenName => $recipeNames) {
+        if (in_array($recipe['name'], $recipeNames)) {
+            $relationalKitchen = $kitchenBeans[$kitchenName];
+            $relationalKitchen->ownRecipeList[] = $dbRecipe;
 
-    $dbKitchen->name = $kitchen['name'];
-    $dbKitchen->description = $kitchen['description'];
-
-    $kitchenId = R::store($dbKitchen);
+            R::store($relationalKitchen);
+        }
+    }
 }
 
 echo $recipeId . " recipes inserted" . PHP_EOL;

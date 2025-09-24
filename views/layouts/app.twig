@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kitchen app</title>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen app</title>
     {% block head %}
     <link rel="stylesheet" type="text/css" href="/resources/css/styles.css">
     {% endblock %}
@@ -19,35 +19,20 @@
     </div>
     
     <div id="container">
-        <div id="show-recipe">
         {% block show %}
         {% endblock %}
-        </div>
     
-        <div id="recipes">
         {% block recipes %}
         {% endblock %}
-        </div>
 
-        <div id="kitchens">
         {% block kitchens %}
         {% endblock %}
-        </div> 
 
-        <div id="introduction">
-        {% block introduction %}
-        {% endblock %}
-        </div>
-
-        <div id="create-container">
         {% block create %}
         {% endblock %}
-        </div>
 
-        <div id="edit-container">
         {% block edit %}
         {% endblock %}
-        </div>
     </div>
 </body>
 </html>

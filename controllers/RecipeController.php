@@ -12,6 +12,7 @@ class RecipeController extends BaseController
 {
     private Helpers $helper;
     protected array $recipes;
+    private array $kitchens;
     private const TYPES = [
         'Breakfast',
         'Lunch',
@@ -25,11 +26,19 @@ class RecipeController extends BaseController
 
     public function __construct()
     {
+        // set up connection to db
         parent::__construct();
+
         $this->helper = new Helpers();
 
+        // add recipes
         for ($i = 1; $i <= R::count('recipe'); $i++) {
             $this->recipes[] = R::load('recipe', $i);
+        }
+
+        // add kitchens
+        for ($i = 1; $i <= R::count('kitchen'); $i++) {
+            $this->kitchens[] = R::load('kitchen', $i);
         }
     }
 
@@ -55,7 +64,8 @@ class RecipeController extends BaseController
         }
 
         $this->helper->displayTemplate('recipes/show.twig', [
-            'recipe' => $foundRecipe
+            'recipe' => $foundRecipe,
+            'kitchen' => $this->getBeanById('kitchen', $foundRecipe->kitchen_id)
         ]);
     }
 
@@ -64,6 +74,7 @@ class RecipeController extends BaseController
         $this->helper->displayTemplate('recipes/create.twig', [
             'types' => self::TYPES,
             'difficulties' => self::DIFFICULTIES,
+            'kitchens' => $this->kitchens,
         ]);
     }
 
@@ -74,11 +85,12 @@ class RecipeController extends BaseController
         $newRecipe->name = $_POST['name'];
         $newRecipe->type = $_POST['type'];
         $newRecipe->level = $_POST['level'];
+        $newRecipe->kitchen_id = $_POST['kitchen'];
 
         $recipeId = R::store($newRecipe);
 
         $_GET['id'] = $recipeId;
-        header('Location: /recipe/show&id=' . $recipeId);
+        header('Location: /kitchen/show&id=' . $_POST['kitchen']);
         exit();
     }
 
@@ -98,6 +110,8 @@ class RecipeController extends BaseController
 
         $this->helper->displayTemplate('recipes/edit.twig', [
             'recipe' => $foundRecipe,
+            'kitchen' => $this->getBeanById('kitchen', $foundRecipe->kitchen_id),
+            'kitchens' => $this->kitchens,
             'types' => self::TYPES,
             'difficulties' => self::DIFFICULTIES,
         ]);
@@ -111,6 +125,7 @@ class RecipeController extends BaseController
         $editRecipe->name = $_POST['name'];
         $editRecipe->type = $_POST['type'];
         $editRecipe->level = $_POST['level'];
+        $editRecipe->kitchen_id = $_POST['kitchen'];
 
         $editRecipeId = R::store($editRecipe);
 

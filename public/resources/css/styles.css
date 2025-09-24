@@ -9,15 +9,17 @@ fieldset {
 }
 #container {
     display: flex;
-    margin: 50px;
+    flex-direction: column;
+    margin: 5vw 18vw 5vw 18vw;
+    align-items: center;
     justify-content: center;
+    gap: 3.5rem;
 }
 
 #error {
     background-color: rgb(255, 160, 160);
     color: rgb(198, 0, 0);
 }
-
 
 .center {
     text-align: center;
@@ -83,6 +85,7 @@ fieldset {
 #recipe-table th {
     background-color: rgb(227, 227, 227);
 }
+
 /* difficulty levels */
 .levels {
     display: flex;
@@ -109,8 +112,9 @@ fieldset {
 /* kitchen show view */
 #kitchen-show-container {
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
+
 #kitchen-description {
     max-width: 500px;
     margin: 0;
@@ -148,5 +152,74 @@ fieldset {
     justify-content: flex-end;
     gap: 20px;
 }
-/* edit view */
-#edit-container {}
+
+/* kitchen show recipe tables */
+#kitchen-show-recipe-tables {
+    display: flex;
+    gap: 3vw;
+    flex-wrap: wrap;
+}
+
+#kitchen-show-recipes {
+    align-self: flex-start;
+}
+
+/* !!! ALLE STYLING VOOR '.show-recipe-table' HIERONDER ZIJN AI-GEGENEREERD */
+/* Algemene stijl voor recipe cards (show tables) */
+.show-recipe-table {
+    border-collapse: collapse;
+    width: 220px;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-align: center;
+}
+
+.show-recipe-table:hover {
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Titelrij (recept naam) */
+.show-recipe-table th {
+    background-color: #f2f2f2;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 12px;
+    text-align: center;
+}
+
+/* Cell inhoud */
+.show-recipe-table td {
+    padding: 10px;
+    font-size: 0.95rem;
+    color: #333;
+    border-top: 1px solid #e5e5e5;
+}
+
+/* Link knop */
+.show-recipe-table a {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-top: 4px;
+    background-color: rgb(55, 55, 241);
+    color: white;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+/* Levels integratie (easy, medium, hard) */
+.show-recipe-table .level-easy,
+.show-recipe-table .level-medium,
+.show-recipe-table .level-hard {
+    display: inline-block;
+    margin: 6px auto;
+    border-radius: 7px;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+/* !!! ALLE STYLING VOOR '.show-recipe-table' HIERBOVEN ZIJN AI-GEGENEREERD */

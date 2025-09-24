@@ -2,19 +2,21 @@
 
 {% block create %}
 
-    <h1>Create kitchen</h1>
+    <div id="create-container">
+        <h1>Create kitchen</h1>
 
-    <form id="create-edit-form" method="POST" action="/kitchen/create">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="description">Description</label>
-        <textarea id="description" name="description" rows="4" cols="30" form="create-edit-form" required></textarea>
+        <form id="create-edit-form" method="POST" action="/kitchen/create">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4" cols="30" form="create-edit-form" required></textarea>
 
-        <div id="submit-section">
-            <a href="/kitchen"class="center hover-underline">Back to kitchens</a>
-            <input id="submit" type="submit" value="Submit">
-        </div>
-    </form>
+            <div id="submit-section">
+                <a href="/kitchen" class="center hover-underline">Back to kitchens</a>
+                <input id="submit" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
     
 {% endblock %}

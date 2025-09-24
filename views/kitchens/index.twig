@@ -2,19 +2,21 @@
 
 {% block kitchens %}
 
-    <h1>Kitchens</h1>
+    <div id="kitchens">
+        <h1>Kitchens</h1>
 
-    <p><a href="/kitchen/create"class="hover-underline">+ add kitchen</a></p>
-    
-    <table id="recipe-table">
-        <tr class="table-row">
-            <th>Naam</th>
-        </tr>
+        <p><a href="/kitchen/create" class="hover-underline">+ add kitchen</a></p>
+        
+        <table id="recipe-table">
+            <tr class="table-row">
+                <th>Naam</th>
+            </tr>
 
-        {% for kitchen in kitchens %}
-        <tr class="table-row">
-            <td><a href="/kitchen/show&id={{ kitchen.id }}" class="hover-underline">{{ kitchen.name }}</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+            {% for kitchen in kitchens %}
+            <tr class="table-row">
+                <td><a href="/kitchen/show&id={{ kitchen.id }}" class="hover-underline">{{ kitchen.name }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

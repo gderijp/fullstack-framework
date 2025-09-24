@@ -2,33 +2,40 @@
 
 {% block show %}
 
-    <p class="center"><a href="/"class="center hover-underline">< Terug naar homepagina</a></p>
+    <div id="show-recipe">
+        <p class="center"><a href="/" class="center hover-underline">&lt; Terug naar homepagina</a></p>
 
-    <table id="recipe-table">
-        <tr class="table-row">
-            <th><h2>{{ recipe.name }}</h2></th>
-            <th></th>
-        </tr>
+        <table id="recipe-table">
+            <tr class="table-row">
+                <th><h2>{{ recipe.name }}</h2></th>
+                <th></th>
+            </tr>
 
-        <tr class="table-row">
-            <td>Type</td>
-            <td class="center">{{ recipe.type }}</td>
-        </tr>
-        
-        <tr class="table-row">
-            <td>Level</td>
-            <td>
-                {% if recipe.level == 'easy' %}
-                    <span class="level-easy levels">{{ recipe.level }}</span>
-                {% elseif recipe.level == 'medium' %}
-                    <span class="level-medium levels">{{ recipe.level }}</span>
-                {% elseif recipe.level == 'hard' %}
-                    <span class="level-hard levels">{{ recipe.level }}</span>
-                {% endif %}
-            </td>
-        </tr>
-    </table>
+            <tr class="table-row">
+                <td>Keuken</td>
+                <td class="center"><a href="/kitchen/show&id={{ recipe.kitchen_id }}">{{ kitchen.name }}</a></td>
+            </tr>
 
-    <a href="/recipe/edit&id={{ recipe.id }}" id="edit-btn">Edit this recipe</a>
+            <tr class="table-row">
+                <td>Type</td>
+                <td class="center">{{ recipe.type }}</td>
+            </tr>
+            
+            <tr class="table-row">
+                <td>Level</td>
+                <td>
+                    {% if recipe.level == 'easy' %}
+                        <span class="level-easy levels">{{ recipe.level }}</span>
+                    {% elseif recipe.level == 'medium' %}
+                        <span class="level-medium levels">{{ recipe.level }}</span>
+                    {% elseif recipe.level == 'hard' %}
+                        <span class="level-hard levels">{{ recipe.level }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+
+        <a href="/recipe/edit&id={{ recipe.id }}" id="edit-btn">Edit this recipe</a>
+    </div>
 
 {% endblock %}

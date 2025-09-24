@@ -44,8 +44,12 @@ class KitchenController extends BaseController
             $this->helper->error(404, "No kitchen with id {$kitchenId} found");
         }
 
+        // add recipes with same kitchen_id
+        $foundRecipes = R::find('recipe', "kitchen_id = $kitchenId");
+
         $this->helper->displayTemplate('kitchens/show.twig', [
-            'kitchen' => $foundKitchen
+            'kitchen' => $foundKitchen,
+            'recipes' => $foundRecipes,
         ]);
     }
 
