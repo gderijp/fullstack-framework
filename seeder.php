@@ -116,5 +116,12 @@ foreach ($recipes as $recipe) {
     }
 }
 
+// add user
+$dbUser = R::dispense('user');
+$dbUser->username = 'future-tech-leader';
+$dbUser->password = password_hash('password', PASSWORD_BCRYPT);
+$userId = R::store($dbUser);
+
 echo $recipeId . " recipes inserted" . PHP_EOL;
 echo $kitchenId . " kitchens inserted" . PHP_EOL;
+echo $userId . " user inserted" . PHP_EOL;
