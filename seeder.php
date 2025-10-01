@@ -118,8 +118,8 @@ foreach ($recipes as $recipe) {
 
 // add user
 $dbUser = R::dispense('user');
-$dbUser->username = 'test';
-$dbUser->password = password_hash('test', PASSWORD_BCRYPT);
+$dbUser->username = 'future-tech-leader';
+$dbUser->password = password_hash('password', PASSWORD_BCRYPT);
 $userId = R::store($dbUser);
 
 echo $recipeId . " recipes inserted" . PHP_EOL;

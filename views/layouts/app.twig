@@ -12,16 +12,21 @@
 <body>
     <div id="header">
     {% block header %}
-        <a href="/"><img src="/resources/icons/bit-academy.png" alt="Bit academy logo"></a>
-        <a href="/recipe" class="header-button hover-underline">Recipies</a>
-        <a href="/kitchen" class="header-button hover-underline">Kitchens</a>
+        <div id="nav-link-section">
+            <a href="/"><img src="/resources/icons/bit-academy.png" alt="Bit academy logo"></a>
+            <a href="/recipe" class="header-button hover-underline">Recipies</a>
+            <a href="/kitchen" class="header-button hover-underline">Kitchens</a>
+        </div>
 
-        {% if session.user_id %}
-            <span style="right: 250px;" class="header-button text-right">Welkom, {{ session.username }}</span><a href="/user/logout" class="header-button hover-underline text-right">Log out</a>
-        {% else %}
-            <a href="/user" class="header-button hover-underline text-right">Log in</a>
-        {% endif %}
-        
+        <div id="nav-login-logout">
+            {% if session.user_id %}
+                <span style="right: 250px;" class="header-button text-right">Welkom, {{ session.username }}</span>
+                <a href="/user/logout" class="header-button hover-underline text-right">Log out</a>
+            {% else %}
+                <a href="/user" class="header-button hover-underline text-right">Log in</a>
+            {% endif %}
+        </div>
+
     {% endblock %}
     </div>
     

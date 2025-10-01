@@ -40,7 +40,7 @@ fieldset {
 /* header bar */
 #header {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap: 5vw;
     padding: 10px;
@@ -48,6 +48,11 @@ fieldset {
     flex-wrap: wrap;
 }
 
+#nav-link-section {
+    display: flex;
+    align-items: center;
+    gap: 4vw;
+}
 #header a {
     font-size: 1.2rem;
     font-weight: bold;
@@ -62,10 +67,17 @@ fieldset {
     color: white;
 }
 
-.text-right {
-    position: absolute;
+#nav-login-logout {
+    display: flex;
+    gap: 15vw;
+    align-items: baseline;
+}
+
+#nav-login-logout a {
+    position: relative;
     right: 100px;
 }
+
 /* recipe table */
 #recipe-table {
     justify-content: center;
