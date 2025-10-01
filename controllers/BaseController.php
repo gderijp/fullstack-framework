@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
+use RedBeanPHP\OODBBean;
 use RedBeanPHP\R;
 
 /**
@@ -35,5 +38,15 @@ class BaseController
         $bean = R::load($typeOfBean, $queryStringKey);
 
         return $bean;
+    }
+
+    public function authorizeUser(): void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /user/login');
+            exit();
+        }
+
+        return;
     }
 }

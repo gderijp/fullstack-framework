@@ -73,6 +73,8 @@ class KitchenController extends BaseController
      */
     public function create(): void
     {
+        $this->authorizeUser();
+
         $this->helper->displayTemplate('kitchens/create.twig', []);
     }
 
@@ -84,6 +86,8 @@ class KitchenController extends BaseController
      */
     public function createPost(): void
     {
+        $this->authorizeUser();
+
         $newKitchen = R::dispense('kitchen');
 
         $newKitchen->name = $_POST['name'];
@@ -103,6 +107,8 @@ class KitchenController extends BaseController
      */
     public function edit(): void
     {
+        $this->authorizeUser();
+
         if (empty($_GET['id'])) {
             $this->helper->error(404, 'No kitchen ID specified');
         }
@@ -128,6 +134,8 @@ class KitchenController extends BaseController
      */
     public function editPost(): void
     {
+        $this->authorizeUser();
+
         $editKitchen = R::dispense('kitchen');
 
         $editKitchen->id = $_GET['id'];

@@ -89,6 +89,8 @@ class RecipeController extends BaseController
      */
     public function create(): void
     {
+        $this->authorizeUser();
+
         $this->helper->displayTemplate('recipes/create.twig', [
             'types' => self::TYPES,
             'difficulties' => self::DIFFICULTIES,
@@ -104,6 +106,8 @@ class RecipeController extends BaseController
      */
     public function createPost(): void
     {
+        $this->authorizeUser();
+
         $newRecipe = R::dispense('recipe');
 
         $newRecipe->name = $_POST['name'];
@@ -125,6 +129,8 @@ class RecipeController extends BaseController
      */
     public function edit(): void
     {
+        $this->authorizeUser();
+
         if (empty($_GET['id'])) {
             $this->helper->error(404, 'No recipe ID specified');
         }
