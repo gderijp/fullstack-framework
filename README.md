@@ -1,58 +1,54 @@
-# Recepten Applicatie // Fullstack Framework
-Een browser-applicatie waarmee gebruikers hun recepten kunnen beheren en filteren op basis van de keuken waar ze vandaan komen.
+# Recipe app // fullstack framework
+CRUD Browser application where the user can manage their recipes and filter by specifying which kitchen it originates from
 
-Gebouwd met een zelfgebouwd MVC fullstack framework, gebruikmakend van Twig Templates en RedBeanPHP ORM.
+Built using self-built MVC fullstack framework, using Twig Templates and RedBeanPHP ORM
 
-## Functionaliteiten
-- __Gebruikersauthenticatie__
-  - Registratie en inloggen
+## Features
+- __User Authentication__
+  - User registration and login
 
-- __Receptenbeheer__
-  - Alle recepten bekijken
-  - Nieuwe recepten toevoegen
-  - Bestaande recepten bewerken
+- __Recipe Management__
+  - View all recipes
+  - Create new recipes
+  - Edit existing recipes
 
-- __Keukenbeheer__
-  - Alle beschikbare keukens bekijken
-  - Nieuwe keukentypes toevoegen met beschrijvingen
-  - Keukeninformatie bewerken
-  - Recepten bekijken per keuken
+- __Kitchen Management__
+  - View all available kitchens
+  - Add new kitchen types with descriptions
+  - Edit kitchen information
+  - View recipes associated with each kitchen
 
-## Technische Stack
-- __Backend Framework__: Aangepast PHP MVC Framework
+## Tech Stack
+- __Backend Framework__: Custom PHP MVC Framework
 - __Template Engine__: Twig
 - __Database ORM__: RedBeanPHP
 - __Database__: MySQL
 
-## Installatie
-1. Kloon deze repository
-2. Configureer je webserver (Apache) om naar de `public` map te wijzen
-3. Installeer dependencies:
+## Installation
+1. Clone this repository
+2. Configure your web server (like apache) to point to the `public` directory
+3. Install dependencies:
    ```
    composer install
    ```
-4. Stel de MySQL database in:
-   - Maak een database aan genaamd 'fullstack_framework'
-   - Configureer database inloggegevens in `BaseController.php`:
+4. Set up your MySQL database:
+   - Create a database named 'fullstack_framework'
+   - Configure database credentials in `BaseController.php`:
      ```php
-     R::setup('mysql:host=localhost;dbname=fullstack_framework', 'bit_academy', 'bit_academy');
+     // line 21
+     R::setup('mysql:host=localhost;dbname=fullstack_framework', '{{ username }}', '{{ password }}');
      ```
-5. Vul de database met voorbeelddata:
+5. Seed the database:
     ```
     php seeder.php
     ```
 
-## Ontwikkelomgeving Opzetten
-1. Configureer je virtual host om naar de `public` map te wijzen
-2. Het `.htaccess` bestand in de public map regelt de URL herschrijving
+## Usage
+1. Start your web server (like apache)
+2. Access the application through your configured domain
+3. Default test user credentials:
+    - Username: test
+    - Password: test
 
-## Gebruik
-1. Start je webserver (zoals apache)
-2. Open de applicatie via je geconfigureerde domein
-3. Standaard testgebruiker inloggegevens:
-    - Gebruikersnaam: test
-    - Wachtwoord: test
-
-
-## Bijdragen
-Voel je vrij om problemen te melden en pull requests in te dienen.
+## Contributing
+Feel free to submit issues and pull requests
