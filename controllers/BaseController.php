@@ -4,8 +4,14 @@ namespace App\Controllers;
 
 use RedBeanPHP\R;
 
+/**
+ * BaseController connects to Database
+ */
 class BaseController
 {
+    /**
+     * Sets up database connection
+     */
     public function __construct()
     {
         if (!R::testConnection()) {
@@ -13,6 +19,13 @@ class BaseController
         }
     }
 
+    /**
+     * Find and return Database Bean Object using id
+     *
+     * @param $typeOfBean
+     * @param $queryStringKey
+     * @return \RedBeanPHP\OODBBean|void
+     */
     public function getBeanById($typeOfBean, $queryStringKey)
     {
         if (!R::find($typeOfBean, "id = $queryStringKey")) {

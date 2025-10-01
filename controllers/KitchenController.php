@@ -8,6 +8,9 @@ use App\Helpers;
 use App\Controllers\BaseController;
 use RedBeanPHP\R;
 
+/**
+ * Controller for all the kitchens found in the database
+ */
 class KitchenController extends BaseController
 {
     private Helpers $helper;
@@ -23,6 +26,11 @@ class KitchenController extends BaseController
         }
     }
 
+    /**
+     * Show index template with list of all kitchens
+     *
+     * @return void
+     */
     public function index()
     {
         $this->helper->displayTemplate('kitchens/index.twig', [
@@ -30,6 +38,11 @@ class KitchenController extends BaseController
         ]);
     }
 
+    /**
+     * If id is passed as second slug, show view including all kitchen information
+     *
+     * @return void
+     */
     public function show()
     {
         if (empty($_GET['id'])) {
@@ -53,11 +66,22 @@ class KitchenController extends BaseController
         ]);
     }
 
+    /**
+     * Show view for user to create a kitchen
+     *
+     * @return void
+     */
     public function create(): void
     {
         $this->helper->displayTemplate('kitchens/create.twig', []);
     }
 
+    /**
+     * Store kitchen in the database
+     *
+     * @return void
+     * @throws \RedBeanPHP\RedException\SQL
+     */
     public function createPost(): void
     {
         $newKitchen = R::dispense('kitchen');
@@ -72,6 +96,11 @@ class KitchenController extends BaseController
         exit();
     }
 
+    /**
+     * If kitchenId is specified as slug, display update form to user
+     *
+     * @return void
+     */
     public function edit(): void
     {
         if (empty($_GET['id'])) {
@@ -91,6 +120,12 @@ class KitchenController extends BaseController
         ]);
     }
 
+    /**
+     * Alter kitchen's info
+     *
+     * @return void
+     * @throws \RedBeanPHP\RedException\SQL
+     */
     public function editPost(): void
     {
         $editKitchen = R::dispense('kitchen');

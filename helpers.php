@@ -6,6 +6,9 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\TemplateWrapper;
 
+/**
+ * Helper class, helps Controllers with convenient reusable functions
+ */
 class Helpers
 {
     private Environment $twig;
@@ -23,11 +26,14 @@ class Helpers
     }
 
     /**
-     * Display the given template using the array of variables passed
+     *  Display the given template using the array of variables passed
      *
-     * @param string $template
+     * @param string $templateName
      * @param array $variables
      * @return void
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     function displayTemplate(string $templateName, array $variables): void
     {
@@ -37,11 +43,14 @@ class Helpers
     }
 
     /**
-     * Send user to error page
-     * 
+     *  Send user to error page
+     *
      * @param int $errorNumber
      * @param string $errorMessage
      * @return void
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     function error(int $errorNumber, string $errorMessage): void
     {

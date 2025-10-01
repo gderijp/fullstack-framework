@@ -9,6 +9,9 @@ use App\Controllers\BaseController;
 use PDO;
 use RedBeanPHP\R;
 
+/**
+ *  Controller for all the recipes found in the database
+ */
 class UserController extends BaseController
 {
     private Helpers $helper;
@@ -21,11 +24,21 @@ class UserController extends BaseController
         $this->helper = new Helpers();
     }
 
+    /**
+     * If user doesn't specify a second slug, show login page
+     *
+     * @return void
+     */
     public function index(): void
     {
         $this->login();
     }
 
+    /**
+     * Show login template
+     *
+     * @return void
+     */
     public function login(): void
     {
         $errorMessage = null;
@@ -39,6 +52,16 @@ class UserController extends BaseController
         ]);
     }
 
+    /**
+     * Searches for user with given username
+     * If username exists, checks if passwords match
+     *
+     * Send user to login form with error if there is no match
+     *
+     * Send user to index page if there's a match
+     *
+     * @return void
+     */
     public function loginPost(): void
     {
         $user = $_POST['username'];
@@ -61,6 +84,13 @@ class UserController extends BaseController
         exit();
     }
 
+    /**
+     * user gets logged out if user visits '/user/logout'
+     *
+     * Sends back to login page after logging out
+     *
+     * @return void
+     */
     public function logout(): void
     {
         unset($_SESSION['user_id']);

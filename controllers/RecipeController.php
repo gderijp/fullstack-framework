@@ -8,6 +8,9 @@ use App\Helpers;
 use App\Controllers\BaseController;
 use RedBeanPHP\R;
 
+/**
+ * Controller for all the recipes found in the database
+ */
 class RecipeController extends BaseController
 {
     private Helpers $helper;
@@ -42,6 +45,11 @@ class RecipeController extends BaseController
         }
     }
 
+    /**
+     * Show index template with list of all recipes
+     *
+     * @return void
+     */
     public function index(): void
     {
         $this->helper->displayTemplate('recipes/index.twig', [
@@ -49,6 +57,11 @@ class RecipeController extends BaseController
         ]);
     }
 
+    /**
+     * If id is passed as second slug, show view including all recipe information
+     *
+     * @return void
+     */
     public function show(): void
     {
         if (empty($_GET['id'])) {
@@ -69,6 +82,11 @@ class RecipeController extends BaseController
         ]);
     }
 
+    /**
+     *  Show view for user to create a recipe
+     *
+     * @return void
+     */
     public function create(): void
     {
         $this->helper->displayTemplate('recipes/create.twig', [
@@ -78,6 +96,12 @@ class RecipeController extends BaseController
         ]);
     }
 
+    /**
+     * Store recipe in the database
+     *
+     * @return void
+     * @throws \RedBeanPHP\RedException\SQL
+     */
     public function createPost(): void
     {
         $newRecipe = R::dispense('recipe');
@@ -94,6 +118,11 @@ class RecipeController extends BaseController
         exit();
     }
 
+    /**
+     *  If recipeId is specified as slug, display update form to user
+     *
+     * @return void
+     */
     public function edit(): void
     {
         if (empty($_GET['id'])) {
@@ -117,6 +146,12 @@ class RecipeController extends BaseController
         ]);
     }
 
+    /**
+     * alter recipe's info
+     *
+     * @return void
+     * @throws \RedBeanPHP\RedException\SQL
+     */
     public function editPost(): void
     {
         $editRecipe = R::dispense('recipe');
