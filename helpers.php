@@ -17,6 +17,9 @@ class Helpers
     {
         $loader = new FilesystemLoader('../views/');
         $this->twig = new Environment($loader);
+
+        // Add global session variable to pass to all twig templates
+        $this->twig->addGlobal('session', $_SESSION);
     }
 
     /**
@@ -34,7 +37,7 @@ class Helpers
     }
 
     /**
-     * Stuurt de gebruiker naar een error pagina
+     * Send user to error page
      * 
      * @param int $errorNumber
      * @param string $errorMessage

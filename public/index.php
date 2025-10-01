@@ -2,15 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Controllers\KitchenController;
-use App\Controllers\RecipeController;
 use App\Helpers;
 
 require_once '../vendor/autoload.php';
 
+session_start();
 $helper = new Helpers();
-$recipeController = new RecipeController();
-$kitchenController = new KitchenController();
 
 $params = explode('/', $_GET['params']);
 $controller = $params[0] ? $params[0] : 'recipe';
@@ -24,7 +21,7 @@ if (!class_exists('App\\Controllers\\' . $controllerCheck)) {
 
 // Create controller instance dynamically
 $controllerClass = 'App\\Controllers\\' . $controllerCheck;
-$controllerInstance = ${strtolower($controller) . 'Controller'};
+$controllerInstance = new $controllerClass();
 
 // Check if method exists
 if (method_exists($controllerInstance, $method)) {

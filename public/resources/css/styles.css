@@ -62,6 +62,10 @@ fieldset {
     color: white;
 }
 
+.text-right {
+    position: absolute;
+    right: 100px;
+}
 /* recipe table */
 #recipe-table {
     justify-content: center;

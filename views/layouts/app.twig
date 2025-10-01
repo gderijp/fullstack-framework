@@ -15,6 +15,13 @@
         <a href="/"><img src="/resources/icons/bit-academy.png" alt="Bit academy logo"></a>
         <a href="/recipe" class="header-button hover-underline">Recipies</a>
         <a href="/kitchen" class="header-button hover-underline">Kitchens</a>
+
+        {% if session.user_id %}
+            <span style="right: 250px;" class="header-button text-right">Welkom, {{ session.username }}</span><a href="/user/logout" class="header-button hover-underline text-right">Log out</a>
+        {% else %}
+            <a href="/user" class="header-button hover-underline text-right">Log in</a>
+        {% endif %}
+        
     {% endblock %}
     </div>
     
@@ -32,6 +39,9 @@
         {% endblock %}
 
         {% block edit %}
+        {% endblock %}
+    
+        {% block login %}
         {% endblock %}
     </div>
 </body>
