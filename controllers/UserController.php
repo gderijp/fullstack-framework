@@ -66,20 +66,89 @@ class UserController extends BaseController
     {
         $user = $_POST['username'];
         $pass = $_POST['password'];
-        $foundUser = R::find('user', "username = ?", [
+        $foundUser = R::findOne('user', "username = ?", [
             [$user, PDO::PARAM_STR],
         ]);
 
         // send user back to form if no user is found
-        if (!$foundUser || !$this->verifyUser($pass, $foundUser[1]['password'])) {
+        if (!$foundUser || !$this->verifyUser($pass, $foundUser['password'])) {
             $_SESSION['login_error'] = 'Invalid username or password';
             $this->login();
             exit();
         }
 
         // send user to index page
-        $_SESSION['user_id'] = $foundUser[1]['id'];
-        $_SESSION['username'] = $foundUser[1]['username'];
+        $_SESSION['user_id'] = $foundUser['id'];
+        $_SESSION['username'] = $foundUser['username'];
+        header('Location: /recipe');
+        exit();
+    }
+
+    /**
+     * Show register template
+     *
+     * @return void
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function register(): void
+    {
+        $errorMessage = null;
+        if (isset($_SESSION['register_error'])) {
+            $errorMessage = $_SESSION['register_error'];
+            unset($_SESSION['register_error']);
+        }
+
+        $this->helper->displayTemplate('user/register.twig', [
+            'errorMessage' => $errorMessage,
+        ]);
+    }
+
+    /**
+     * Checks if user filled in all fields
+     *
+     * Throw error if username exists
+     *
+     * Logs in and send user to index page if there's a match
+     *
+     * @return void
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function registerPost(): void
+    {
+        $user = $_POST['username'];
+        $pass = $_POST['password'];
+        $passVerify = $_POST['verify_pass'];
+
+        if (empty($user) || empty($pass) || empty($passVerify)) {
+            $_SESSION['register_error'] = 'All fields are required';
+            $this->register();
+            exit();
+        }
+
+        if ($pass !== $passVerify) {
+            $_SESSION['register_error'] = 'Passwords did not match';
+            $this->register();
+            exit();
+        }
+
+
+        $userExists = R::find('user', "username = ?", [
+            [$user, PDO::PARAM_STR]
+        ]);
+
+        // send user back to form if username already exists
+        if ($userExists) {
+            $_SESSION['register_error'] = 'Username is already in use';
+            $this->register();
+            exit();
+        }
+
+        $_SESSION['user_id'] = $this->addUserToDatabase($user, $pass);
+        $_SESSION['username'] = $user;
         header('Location: /recipe');
         exit();
     }
@@ -97,6 +166,13 @@ class UserController extends BaseController
         header('Location: /user/login');
     }
 
+    /**
+     * Verify if password_verify fails or succeds
+     * 
+     * @param string $pass
+     * @param string $hash
+     * @return bool
+     */
     private function verifyUser(string $pass, string $hash): bool
     {
         if (password_verify($pass, $hash)) {
@@ -104,5 +180,24 @@ class UserController extends BaseController
         } else {
             return false;
         }
+    }
+
+    /**
+     * Adds user to database
+     * 
+     * returns the id of the user added
+     * 
+     * @param string $username
+     * @param string $password
+     * @return int
+     */
+    private function addUserToDatabase(string $username, string $password): int
+    {
+        $newUser = R::dispense('user');
+
+        $newUser->username = $username;
+        $newUser->password = password_hash($password, PASSWORD_BCRYPT);
+
+        return R::store($newUser);
     }
 }

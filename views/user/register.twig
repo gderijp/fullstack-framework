@@ -1,0 +1,24 @@
+{% extends "./layouts/app.twig" %}
+
+{% block login %}
+
+    <div id="recipes">
+        <img src="/resources/icons/bit-academy-primary.svg" alt="Bit academy logo">
+    
+        <h1>Create a new account</h1>
+        
+        <form method="POST" action="/user/register">
+            <input type="text" name="username" id="username" placeholder="username">
+            <input type="password" name="password" id="password" placeholder="password">
+            <input type="password" name="verify_pass" id="verify_pass" placeholder="verify password">
+
+            <input type="submit" value="Register">
+            <a href="/user">Or log in</a>
+        </form>
+
+        {% if errorMessage %}
+            <span id="error">{{ errorMessage }}</span>
+        {% endif %}
+    </div>
+    
+{% endblock %}
